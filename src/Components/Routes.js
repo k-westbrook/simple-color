@@ -10,7 +10,6 @@ export default class Routes extends React.Component {
 
       <Switch>
         <Route path="/" component={HomePage} />
-        <Route component={HomePage} />
       </Switch>
 
     )
