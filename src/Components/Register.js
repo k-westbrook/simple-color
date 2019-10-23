@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 
-export default class LoginPage extends React.Component {
+export default class RegisterPage extends React.Component {
 
   constructor() {
     super();
@@ -30,7 +30,7 @@ export default class LoginPage extends React.Component {
         </form>
 
         <div>
-          <Link to="/register" >Register </Link>
+          <Link to="/login" >Login </Link>
         </div>
       </div>
     )
