@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-
+import axios from 'axios';
 
 export default class RegisterPage extends React.Component {
 
@@ -11,6 +11,17 @@ export default class RegisterPage extends React.Component {
       password: ""
     }
   }
+
+  async getInfo() {
+
+    let data = await axios.post("https://pgqrxh9ys4.execute-api.us-west-1.amazonaws.com/Prod/",
+      {
+        email: "y",
+        password: "hi"
+      });
+    console.log(data);
+  }
+
 
 
   render() {
