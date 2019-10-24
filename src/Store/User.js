@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import history from '../history'
 /**
  * ACTION TYPES
  */
@@ -25,8 +25,27 @@ export const registerUserThunk = (email, password) => async dispatch => {
 
   try {
     let response = await axios.post("https://pgqrxh9ys4.execute-api.us-west-1.amazonaws.com/Prod/", { email, password });
+    let { data } = response;
 
-    dispatch(addUser(response));
+    let userObject;
+
+    if (data.statusCode === 200) {
+      userObject =
+        {
+          user: data.body.user,
+          registered: true
+        };
+      dispatch(addUser(userObject));
+      history.push('/')
+    }
+    else {
+      userObject =
+        {
+
+          registered: false
+        }
+      dispatch(addUser(userObject));
+    }
   } catch (error) {
     console.log(error);
   }

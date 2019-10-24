@@ -37,7 +37,6 @@ class RegisterPage extends React.Component {
 
 
   render() {
-
     return (
       <div>
         <form onSubmit={this.handleOnSubmit}>
@@ -65,7 +64,7 @@ class RegisterPage extends React.Component {
 
 const mapState = state => {
   return {
-    user: state
+    user: state.user
   }
 }
 const mapDispatch = dispatch => {
