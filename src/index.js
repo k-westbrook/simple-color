@@ -4,7 +4,7 @@ import './index.css';
 import App from './Components/App';
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
-import Store from './Store/Store'
+import Store from './Store'
 import history from './history'
 import { Router } from 'react-router-dom'
 

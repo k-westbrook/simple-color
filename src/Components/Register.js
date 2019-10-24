@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { registerUserThunk } from '../Store/User';
+import { connect } from 'react-redux';
 
-export default class RegisterPage extends React.Component {
+
+
+class RegisterPage extends React.Component {
 
   constructor() {
     super();
@@ -10,33 +14,42 @@ export default class RegisterPage extends React.Component {
       email: "",
       password: ""
     }
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
-  async getInfo() {
+  handleOnSubmit(event) {
 
-    let data = await axios.post("https://pgqrxh9ys4.execute-api.us-west-1.amazonaws.com/Prod/",
-      {
-        email: "y",
-        password: "hi"
-      });
-    console.log(data);
+    event.preventDefault();
+    let email = event.target.email.value;
+    let password = event.target.password.value;
+    this.props.registerUser(email, password)
+
   }
 
+  handleOnChange(event) {
+
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value })
+
+  }
 
 
   render() {
+
     return (
       <div>
-        <form>
-          <label for="user-email">
+        <form onSubmit={this.handleOnSubmit}>
+          <label htmlFor="email">
             Email
       </label>
-          <input name="user-email" type="text" />
-          <label for="password">
+          <input name="email" type="text" value={this.state.email} onChange={this.handleOnChange} />
+          <label htmlFor="password">
 
             Password
       </label>
-          <input name="user-password" type="password" />
+          <input name="password" type="new-password" value={this.state.password} onChange={this.handleOnChange} />
           <button>Login</button>
         </form>
 
@@ -49,3 +62,17 @@ export default class RegisterPage extends React.Component {
 
 
 }
+
+const mapState = state => {
+  return {
+    user: state
+  }
+}
+const mapDispatch = dispatch => {
+  return {
+    registerUser: (email, password) => dispatch(registerUserThunk(email, password))
+  }
+}
+
+
+export default connect(mapState, mapDispatch)(RegisterPage)

@@ -21,7 +21,7 @@ const addUser = (user) => ({ type: ADD_USER, user })
 /**
  * THUNK CREATORS
  */
-export const registerUser = (email, password) => async dispatch => {
+export const registerUserThunk = (email, password) => async dispatch => {
 
   try {
     let response = await axios.post("https://pgqrxh9ys4.execute-api.us-west-1.amazonaws.com/Prod/", { email, password });
