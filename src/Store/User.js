@@ -127,7 +127,7 @@ export default function (state = userObject, action) {
     case GET_USER:
       return action.user;
     case LOGOUT_USER:
-      return state
+      return userObject
     default:
       return state
   }

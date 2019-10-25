@@ -19,8 +19,9 @@ class Routes extends React.Component {
 
   componentDidMount() {
     let cookies = new Cookies();
-    console.log(cookies)
-    if (cookies.get('authentication')) {
+
+    if (JSON.stringify(cookies.get('authentication'))) {
+
       let email = cookies.get('email');
       let password = cookies.get('password');
       this.props.authenticate(email, password);

@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutUser } from '../Store/User';
 
-const MainNavBar = () => {
+class MainNavBar extends React.Component {
 
-  return (
-    <nav>
-      <Link to="/home">Home</Link>
-      <Link to="login">Login</Link>
-      <Link to="/home">Logout</Link>
-    </nav>
+  render() {
+    return (
+      <nav>
+        <Link to="/home">Home</Link>
+        <Link to="login">Login</Link>
+        <Link to="/home" onClick={this.props.logout}>Logout</Link>
+      </nav >
 
-  )
+    )
+  }
 }
 const mapDispatch = dispatch => {
   return {
