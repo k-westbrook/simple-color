@@ -4,6 +4,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const ADD_USER = 'ADD_USER';
+const GET_USER = 'GET_USER';
 
 /**
  * INITIAL STATE
@@ -16,6 +17,7 @@ const userObject = {};
  */
 
 const addUser = (user) => ({ type: ADD_USER, user })
+const getUser = user => ({ type: GET_USER, user })
 
 
 /**
@@ -51,6 +53,39 @@ export const registerUserThunk = (email, password) => async dispatch => {
   }
 
 }
+
+export const loginUserThunk = (email, password) => async dispatch => {
+
+  try {
+    let response = await axios.get("https://isloxxdzw9.execute-api.us-west-1.amazonaws.com/Prod", { email, password });
+    let { data } = response;
+
+    let userObject;
+
+    if (data.statusCode === 200) {
+      userObject =
+        {
+          user: data.body.user,
+          registered: true
+        };
+      dispatch(addUser(userObject));
+      history.push('/')
+    }
+    else {
+      userObject =
+        {
+
+          registered: false
+        }
+      dispatch(addUser(userObject));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+
 
 
 /**

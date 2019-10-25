@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { registerUserThunk } from '../Store/User';
+import { connect } from 'react-redux';
 
 
-export default class LoginPage extends React.Component {
+
+class LoginPage extends React.Component {
 
   constructor() {
     super();
@@ -10,27 +13,47 @@ export default class LoginPage extends React.Component {
       email: "",
       password: ""
     }
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
+
+  handleOnSubmit(event) {
+
+    event.preventDefault();
+    let email = event.target.email.value;
+    let password = event.target.password.value;
+    this.props.registerUser(email, password)
+
+  }
+
+  handleOnChange(event) {
+
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value })
+
   }
 
 
   render() {
+
     return (
       <div>
-        <form>
-          <label for="user-email">
+        <form onSubmit={this.handleOnSubmit}>
+          <label htmlFor="email">
             Email
       </label>
-          <input name="user-email" type="text" />
-          <label for="password">
+          <input name="email" type="text" value={this.state.email} onChange={this.handleOnChange} />
+          <label htmlFor="password">
 
             Password
       </label>
-          <input name="user-password" type="password" />
+          <input name="password" type="new-password" value={this.state.password} onChange={this.handleOnChange} />
           <button>Login</button>
         </form>
 
         <div>
-          <Link to="/register" >Register </Link>
+          <Link to="/register" >Register</Link>
         </div>
       </div>
     )
@@ -38,3 +61,17 @@ export default class LoginPage extends React.Component {
 
 
 }
+
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
+const mapDispatch = dispatch => {
+  return {
+    registerUser: (email, password) => dispatch(registerUserThunk(email, password))
+  }
+}
+
+
+export default connect(mapState, mapDispatch)(LoginPage)
