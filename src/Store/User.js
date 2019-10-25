@@ -48,8 +48,8 @@ export const registerUserThunk = (email, password) => async dispatch => {
 
       dispatch(addUser(userObject));
       cookies.set('authentication', true, { path: '/' });
-      cookies.set('email', userObject.email, { path: '/' });
-      cookies.set('password', userObject.password, { path: '/' });
+      cookies.set('email', email, { path: '/' });
+      cookies.set('password', password, { path: '/' });
       history.push('/mydash')
     }
     else {
@@ -83,8 +83,8 @@ export const loginUserThunk = (email, password) => async dispatch => {
         };
       dispatch(getUser(userObject));
       cookies.set('authentication', true, { path: '/' });
-      cookies.set('email', userObject.email, { path: '/' });
-      cookies.set('password', userObject.password, { path: '/' });
+      cookies.set('email', email, { path: '/' });
+      cookies.set('password', password, { path: '/' });
       history.push('/mydash')
     }
     else {
