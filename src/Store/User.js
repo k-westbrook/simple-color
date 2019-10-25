@@ -69,7 +69,7 @@ export const loginUserThunk = (email, password) => async dispatch => {
           registered: true
         };
       dispatch(getUser(userObject));
-      history.push('/')
+      history.push('/mydash')
     }
     else {
       userObject =

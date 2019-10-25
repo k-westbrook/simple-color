@@ -3,6 +3,7 @@ import React from 'react';
 import HomePage from './HomePage'
 import LoginPage from './LogIn';
 import RegisterPage from './Register';
+import MainDashboard from './MainDashboard';
 
 
 export default class Routes extends React.Component {
@@ -14,6 +15,7 @@ export default class Routes extends React.Component {
         <Route path="/homepage" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
+        <Route path="/mydash" component={MainDashboard} />
         <Route component={HomePage} />
       </Switch>
 
