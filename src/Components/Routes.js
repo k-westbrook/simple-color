@@ -20,7 +20,10 @@ class Routes extends React.Component {
   componentDidMount() {
     let cookies = new Cookies();
     if (cookies.get('authentication')) {
-
+      let email = cookies.get('user').email;
+      let password = cookies.get('password').email;
+      this.props.authenticate(email, password);
+      this.setState({ registered: true })
     }
   }
   render() {
