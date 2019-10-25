@@ -6,7 +6,7 @@ import RegisterPage from './Register';
 import MainDashboard from './MainDashboard';
 import { connect } from 'react-redux';
 import { loginUserThunk } from '../Store/User';
-
+import Cookies from 'universal-cookie'
 
 class Routes extends React.Component {
 
@@ -18,7 +18,10 @@ class Routes extends React.Component {
   }
 
   componentDidMount() {
+    let cookies = new Cookies();
+    if (cookies.get('authentication')) {
 
+    }
   }
   render() {
     return (
