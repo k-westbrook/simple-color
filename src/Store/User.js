@@ -1,5 +1,12 @@
 import axios from 'axios';
 import history from '../history'
+import Cookies from 'universal-cookie';
+
+//Cookies
+const cookies = new Cookies();
+
+
+
 /**
  * ACTION TYPES
  */
@@ -35,9 +42,12 @@ export const registerUserThunk = (email, password) => async dispatch => {
       userObject =
         {
           user: data.body.user,
-          registered: true
+          registered: true,
+          keepRegistered: true
         };
+
       dispatch(addUser(userObject));
+      cookies.set('authentication', true, { path: '/' });
       history.push('/mydash')
     }
     else {
@@ -66,9 +76,11 @@ export const loginUserThunk = (email, password) => async dispatch => {
       userObject =
         {
           user: data.body.user,
-          registered: true
+          registered: true,
+          keepRegistered: true
         };
       dispatch(getUser(userObject));
+      cookies.set('authentication', true, { path: '/' });
       history.push('/mydash')
     }
     else {

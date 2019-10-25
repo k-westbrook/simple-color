@@ -4,9 +4,18 @@ import HomePage from './HomePage'
 import LoginPage from './LogIn';
 import RegisterPage from './Register';
 import MainDashboard from './MainDashboard';
+import { connect } from 'react-redux';
+import { loginUserThunk } from '../Store/User';
 
 
-export default class Routes extends React.Component {
+class Routes extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      registered: false
+    }
+  }
   render() {
     return (
 
@@ -23,3 +32,16 @@ export default class Routes extends React.Component {
 
   }
 }
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
+const mapDispatch = dispatch => {
+  return {
+    loginUser: (email, password) => dispatch(loginUserThunk(email, password))
+  }
+}
+
+
+export default connect(mapState, mapDispatch)(Routes)
