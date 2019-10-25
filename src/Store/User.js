@@ -12,6 +12,7 @@ const cookies = new Cookies();
  */
 const ADD_USER = 'ADD_USER';
 const GET_USER = 'GET_USER';
+const LOGOUT_USER = 'LOGOUT_USER';
 
 /**
  * INITIAL STATE
@@ -25,6 +26,7 @@ const userObject = {};
 
 const addUser = (user) => ({ type: ADD_USER, user })
 const getUser = user => ({ type: GET_USER, user })
+const logoutUser = () => ({ type: LOGOUT_USER })
 
 
 /**
