@@ -57,7 +57,7 @@ export const registerUserThunk = (email, password) => async dispatch => {
 export const loginUserThunk = (email, password) => async dispatch => {
 
   try {
-    let response = await axios.get("https://isloxxdzw9.execute-api.us-west-1.amazonaws.com/Prod", { email, password });
+    let response = await axios.post("https://isloxxdzw9.execute-api.us-west-1.amazonaws.com/Prod", { email, password });
     let { data } = response;
 
     let userObject;
@@ -68,7 +68,7 @@ export const loginUserThunk = (email, password) => async dispatch => {
           user: data.body.user,
           registered: true
         };
-      dispatch(addUser(userObject));
+      dispatch(getUser(userObject));
       history.push('/')
     }
     else {
@@ -77,7 +77,7 @@ export const loginUserThunk = (email, password) => async dispatch => {
 
           registered: false
         }
-      dispatch(addUser(userObject));
+      dispatch(getUser(userObject));
     }
   } catch (error) {
     console.log(error);
@@ -95,6 +95,8 @@ export default function (state = userObject, action) {
   switch (action.type) {
     case ADD_USER:
       return action.user
+    case GET_USER:
+      return action.user;
     default:
       return state
   }

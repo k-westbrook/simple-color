@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { registerUserThunk } from '../Store/User';
+import { loginUserThunk } from '../Store/User';
 import { connect } from 'react-redux';
 
 
@@ -11,7 +11,9 @@ class LoginPage extends React.Component {
     super();
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      registered: null,
+      attemped: false
     }
 
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -23,7 +25,8 @@ class LoginPage extends React.Component {
     event.preventDefault();
     let email = event.target.email.value;
     let password = event.target.password.value;
-    this.props.registerUser(email, password)
+    this.props.loginUser(email, password)
+    this.setState({ attemped: true });
 
   }
 
@@ -32,6 +35,17 @@ class LoginPage extends React.Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value })
 
+  }
+
+  componentDidMount() {
+    if (this.props.user) {
+      if (this.props.user.registered) {
+        this.setState({ registered: true });
+      } else {
+        this.setState({ registered: false });
+      }
+
+    }
   }
 
 
@@ -55,6 +69,14 @@ class LoginPage extends React.Component {
         <div>
           <Link to="/register" >Register</Link>
         </div>
+        {(!this.state.registered && this.state.attemped) ?
+          < div >
+            <p>Email or password incorrect.</p>
+          </div>
+          :
+          <div>
+          </div>
+        }
       </div>
     )
   }
@@ -69,7 +91,7 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
   return {
-    registerUser: (email, password) => dispatch(registerUserThunk(email, password))
+    loginUser: (email, password) => dispatch(loginUserThunk(email, password))
   }
 }
 
