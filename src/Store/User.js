@@ -38,7 +38,7 @@ export const registerUserThunk = (email, password) => async dispatch => {
           registered: true
         };
       dispatch(addUser(userObject));
-      history.push('/')
+      history.push('/mydash')
     }
     else {
       userObject =
