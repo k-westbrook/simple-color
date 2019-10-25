@@ -31,11 +31,14 @@ class Routes extends React.Component {
 
 
       <Switch>
+
         <Route path="/homepage" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
-        <Route path="/mydash" component={MainDashboard} />
         <Route component={HomePage} />
+        {(this.state.registered) &&
+          <Route path="/mydash" component={MainDashboard} />
+        }
       </Switch>
 
     )
