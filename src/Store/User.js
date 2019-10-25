@@ -26,7 +26,7 @@ const userObject = {};
 
 const addUser = (user) => ({ type: ADD_USER, user })
 const getUser = user => ({ type: GET_USER, user })
-const logoutUser = () => ({ type: LOGOUT_USER })
+const logout = () => ({ type: LOGOUT_USER })
 
 
 /**
@@ -103,6 +103,17 @@ export const loginUserThunk = (email, password) => async dispatch => {
 
 }
 
+export const logoutUser = () => dispatch => {
+  try {
+    cookies.set('authentication', false, { path: '/' });
+    cookies.remove('email');
+    cookies.remove('password');
+    dispatch(logout())
+
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 
 
@@ -115,6 +126,8 @@ export default function (state = userObject, action) {
       return action.user
     case GET_USER:
       return action.user;
+    case LOGOUT_USER:
+      return state
     default:
       return state
   }
