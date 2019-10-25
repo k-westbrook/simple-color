@@ -16,6 +16,10 @@ class Routes extends React.Component {
       registered: false
     }
   }
+
+  componentDidMount() {
+
+  }
   render() {
     return (
 
@@ -39,7 +43,7 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
   return {
-    loginUser: (email, password) => dispatch(loginUserThunk(email, password))
+    authenticate: (email, password) => dispatch(loginUserThunk(email, password))
   }
 }
 
