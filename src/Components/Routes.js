@@ -13,41 +13,51 @@ class Routes extends React.Component {
   constructor() {
     super();
     this.state = {
-      registered: false
+      registered: false,
+      loaded: false
     }
   }
-
+  //need to update this
   componentDidMount() {
     let cookies = new Cookies();
     if (cookies.get('authentication') === 'true') {
       let email = cookies.get('email');
       let password = cookies.get('password');
       this.props.authenticate(email, password);
-      this.setState({ registered: true })
-
+      this.setState({ registered: true, loaded: true })
+    } else {
+      this.setState({ registered: false, loaded: true })
     }
   }
+
+
   render() {
-    console.log(this.state.registered)
+
     return (
-
-
-      <Switch>
-        {(this.state.registered) ?
+      <div>
+        {(this.state.loaded) ?
           <Switch>
-            <Route path="/mydash" component={MainDashboard} />
-            <Route component={MainDashboard} />
+            {(this.state.registered) ?
+              <Switch>
+                <Route path="/mydash" component={MainDashboard} />
+                <Route component={MainDashboard} />
+              </Switch>
+              :
+              <Switch>
+                <Route path="/homepage" component={HomePage} />
+                <Route path="/login" component={LoginPage} />
+                <Route path="/register" component={RegisterPage} />
+                <Route component={HomePage} />
+              </Switch>
+            }
           </Switch>
           :
-          <Switch>
-            <Route path="/homepage" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route component={HomePage} />
-          </Switch>
-        }
-      </Switch>
+          <div>
+            <p>Loading ...</p>
+          </div>
 
+        }
+      </div>
     )
 
   }

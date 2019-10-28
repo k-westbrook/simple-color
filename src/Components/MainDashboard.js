@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 class MainDashboard extends React.Component {
 
   render() {
+    console.log("COMPONENT")
     return (
       <div>
         <h4>Welcome to Color Simple Main Dash</h4>
