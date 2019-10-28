@@ -19,9 +19,7 @@ class Routes extends React.Component {
 
   componentDidMount() {
     let cookies = new Cookies();
-
-    if (JSON.stringify(cookies.get('authentication'))) {
-
+    if (cookies.get('authentication') === 'true') {
       let email = cookies.get('email');
       let password = cookies.get('password');
       this.props.authenticate(email, password);
@@ -30,6 +28,7 @@ class Routes extends React.Component {
     }
   }
   render() {
+
     return (
 
 
@@ -38,10 +37,11 @@ class Routes extends React.Component {
         <Route path="/homepage" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
-        <Route component={HomePage} />
+
         {(this.state.registered) &&
           <Route path="/mydash" component={MainDashboard} />
         }
+        <Route component={HomePage} />
       </Switch>
 
     )
