@@ -28,7 +28,7 @@ class Routes extends React.Component {
     }
   }
   render() {
-
+    console.log(this.state.registered)
     return (
 
 
