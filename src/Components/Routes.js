@@ -10,22 +10,12 @@ import Cookies from 'universal-cookie'
 
 class Routes extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      registered: false
-    }
-  }
-  //need to update this
   componentDidMount() {
     let cookies = new Cookies();
     if (cookies.get('authentication') === 'true') {
       let email = cookies.get('email');
       let password = cookies.get('password');
       this.props.authenticate(email, password);
-      this.setState({ registered: true })
-    } else {
-      this.setState({ registered: false })
     }
   }
 
@@ -34,18 +24,20 @@ class Routes extends React.Component {
 
     return (
       <div>
-
         <Switch>
-
           <Route path="/homepage" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-          {(this.state.registered) &&
-            <Route path="/mydash" component={MainDashboard} />
+
+          {(this.props.user.registered) ?
+            <Switch>
+              <Route path="/mydash" component={MainDashboard} />
+            </Switch>
+            :
+            <Switch>
+              <Route path="/login" component={LoginPage} />
+              <Route path="/register" component={RegisterPage} />
+            </Switch>
           }
           <Route component={HomePage} />
-
-
         </Switch>
 
       </div>
