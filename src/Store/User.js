@@ -109,7 +109,7 @@ export const logoutUser = () => dispatch => {
     cookies.remove('email');
     cookies.remove('password');
     dispatch(logout())
-
+    history.push('/homepage')
   } catch (err) {
     console.log(err);
   }

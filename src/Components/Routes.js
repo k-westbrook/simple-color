@@ -13,8 +13,7 @@ class Routes extends React.Component {
   constructor() {
     super();
     this.state = {
-      registered: false,
-      loaded: false
+      registered: false
     }
   }
   //need to update this
@@ -24,9 +23,9 @@ class Routes extends React.Component {
       let email = cookies.get('email');
       let password = cookies.get('password');
       this.props.authenticate(email, password);
-      this.setState({ registered: true, loaded: true })
+      this.setState({ registered: true })
     } else {
-      this.setState({ registered: false, loaded: true })
+      this.setState({ registered: false })
     }
   }
 
@@ -35,26 +34,22 @@ class Routes extends React.Component {
 
     return (
       <div>
-        {(this.state.loaded) ?
+        {
           <Switch>
-            {(this.state.registered) ?
-              <Switch>
-                <Route path="/mydash" component={MainDashboard} />
-                <Route component={MainDashboard} />
-              </Switch>
-              :
-              <Switch>
-                <Route path="/homepage" component={HomePage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
-                <Route component={HomePage} />
-              </Switch>
-            }
+
+            <Route path="/homepage" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+
+
+
+
+            <Route path="/mydash" component={MainDashboard} xs />
+            <Route component={HomePage} />
+
+
           </Switch>
-          :
-          <div>
-            <p>Loading ...</p>
-          </div>
+
 
         }
       </div>

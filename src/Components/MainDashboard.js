@@ -3,11 +3,31 @@ import { connect } from 'react-redux'
 
 class MainDashboard extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      loaded: false
+    }
+  }
+  componentDidMount() {
+    this.setState({ loaded: true })
+  }
+
   render() {
-    console.log("COMPONENT")
+
     return (
       <div>
-        <h4>Welcome to Color Simple Main Dash</h4>
+        {(this.state.loaded) ?
+          <div>
+            <h4>Welcome to Color Simple Main Dash</h4>
+          </div>
+          :
+          <div>
+            <p>loading</p>
+          </div>
+
+
+        }
       </div>
     )
   }

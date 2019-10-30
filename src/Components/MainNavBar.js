@@ -10,7 +10,7 @@ class MainNavBar extends React.Component {
       <nav>
         <Link to="/home">Home</Link>
         <Link to="login">Login</Link>
-        <Link to="/home" onClick={this.props.logout}>Logout</Link>
+        <Link to="/homepage" onClick={this.props.logout}>Logout</Link>
       </nav >
 
     )
