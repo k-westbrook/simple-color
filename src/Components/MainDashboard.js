@@ -19,7 +19,7 @@ class MainDashboard extends React.Component {
       <div>
         {(this.state.loaded) ?
           <div>
-            <h4>Welcome to Color Simple Main Dash</h4>
+            <h4>Welcome to Simple Mystery Main Dash</h4>
           </div>
           :
           <div>
