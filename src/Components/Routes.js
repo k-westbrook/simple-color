@@ -34,23 +34,20 @@ class Routes extends React.Component {
 
     return (
       <div>
-        {(this.state.registered) ?
-          <Switch>
 
-            <Route path="/homepage" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
+        <Switch>
+
+          <Route path="/homepage" component={HomePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+          {(this.state.registered) &&
             <Route path="/mydash" component={MainDashboard} />
-            <Route component={HomePage} />
+          }
+          <Route component={HomePage} />
 
 
-          </Switch>
-          :
-          <div>
-            loading
-</div>
+        </Switch>
 
-        }
       </div>
     )
 
