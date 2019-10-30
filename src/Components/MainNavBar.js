@@ -7,12 +7,19 @@ class MainNavBar extends React.Component {
 
   render() {
     return (
-      <nav>
-        <Link to="/home">Home</Link>
-        <Link to="login">Login</Link>
-        <Link to="/homepage" onClick={this.props.logout}>Logout</Link>
-      </nav >
-
+      <div>
+        {(!this.props.user.registered) ?
+          <nav>
+            <Link to="/homepage">Home</Link>
+            <Link to="login">Login</Link>
+          </nav>
+          :
+          <nav>
+            <Link to="/mydash">My Dashboard</Link>
+            <Link to="/homepage" onClick={this.props.logout}>Logout</Link>
+          </nav >
+        }
+      </div>
     )
   }
 }
@@ -21,8 +28,12 @@ const mapDispatch = dispatch => {
     logout: () => dispatch(logoutUser())
   }
 }
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
 
-
-export default connect(null, mapDispatch)(MainNavBar)
+export default connect(mapState, mapDispatch)(MainNavBar)
 
 
