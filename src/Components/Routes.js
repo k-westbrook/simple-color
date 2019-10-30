@@ -4,6 +4,7 @@ import HomePage from './HomePage'
 import LoginPage from './LogIn';
 import RegisterPage from './Register';
 import MainDashboard from './MainDashboard';
+import RecipeContainer from './RecipeContainer'
 import { connect } from 'react-redux';
 import { loginUserThunk } from '../Store/User';
 import Cookies from 'universal-cookie'
@@ -30,6 +31,7 @@ class Routes extends React.Component {
           {(this.props.user.registered) ?
             <Switch>
               <Route path="/mydash" component={MainDashboard} />
+              <Route path='/myrecipebox' component={RecipeContainer} />
             </Switch>
             :
             <Switch>
