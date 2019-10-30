@@ -19,8 +19,7 @@ class MainDashboard extends React.Component {
       <div>
         {(this.state.loaded) ?
           <div>
-            <h4>Welcome to Simple Mystery Main Dash</h4>
-            <button>Start Mystery One</button>
+            <h4>Welcome to your Simple Recipe Dashboard</h4>
           </div>
           :
           <div>

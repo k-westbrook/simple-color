@@ -8,7 +8,7 @@ export default class HomePage extends React.Component {
     console.log("HOMEPAGE")
     return (
       <div>
-        <h4>Welcome to Simple Mystery</h4>
+        <h4>Welcome to Simple Recipe</h4>
 
 
       </div>
