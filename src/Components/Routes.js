@@ -7,6 +7,7 @@ import MainDashboard from './MainDashboard';
 import { connect } from 'react-redux';
 import { loginUserThunk } from '../Store/User';
 import Cookies from 'universal-cookie'
+import EventsContainer from './EventsContainer';
 
 class Routes extends React.Component {
 
@@ -30,7 +31,7 @@ class Routes extends React.Component {
           {(this.props.user.registered) ?
             <Switch>
               <Route path="/mydash" component={MainDashboard} />
-              <Route path="/mydash" component={MainDashboard} />
+              <Route path="/myeats" component={EventsContainer} />
             </Switch>
             :
             <Switch>

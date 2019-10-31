@@ -8,7 +8,7 @@ export default class EventsContainer extends React.Component {
 
     return (
       <div>
-        <h4>Welcome to Simply Eat</h4>
+        <h4>My eats</h4>
 
 
       </div>
