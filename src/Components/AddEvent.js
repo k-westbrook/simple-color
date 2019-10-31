@@ -3,6 +3,7 @@ import axios from 'axios'
 import SearchResults from './SearchResults';
 import NewEventForm from './NewEventForm';
 import { connect } from 'react-redux'
+import { addEventThunk } from '../Store/Event'
 
 
 class AddEvent extends React.Component {
@@ -35,6 +36,7 @@ class AddEvent extends React.Component {
     let email = this.props.user.email;
     let adminID = this.props.user_id;
     console.log(name, date, time, address, city, state, comments, email, adminID)
+    this.props.addEvent(name, date, time, address, city, state, comments, email, adminID)
   }
 
   handleSubmit(evt) {
@@ -65,6 +67,11 @@ class AddEvent extends React.Component {
     )
   }
 }
+const mapDispatch = dispatch => {
+  return {
+    addEvent: (name, date, time, address, city, state, comments, email, adminID) => dispatch(addEventThunk(name, date, time, address, city, state, comments, email, adminID))
+  }
+}
 
 const mapState = state => {
   return {
@@ -72,4 +79,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(AddEvent)
+export default connect(mapState, mapDispatch)(AddEvent)
