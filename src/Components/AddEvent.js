@@ -30,6 +30,7 @@ export default class AddEvent extends React.Component {
     let city = evt.target.city.value;
     let state = evt.target.state.value;
     let comments = evt.target.comments.value;
+
   }
 
   handleSubmit(evt) {

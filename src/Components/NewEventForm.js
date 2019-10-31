@@ -29,7 +29,7 @@ class NewEventForm extends React.Component {
             <label htmlFor="state">State</label>
             <input type="text" name="state" />
             <label htmlFor="comments">Comments</label>
-            <input type="textbox" name="comments" />
+            <input type="text" name="comments" />
             <button>Create Event</button>
           </form>
         </div>

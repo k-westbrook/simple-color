@@ -31,7 +31,35 @@ const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
 /**
  * THUNK CREATORS
  */
+export const addEventThunk = (name, adminEmail, adminId, date, time, address, state, city, comments) => async dispatch => {
 
+  try {
+    let response = await axios.post("https://7lcnoku2w9.execute-api.us-west-1.amazonaws.com/Prod", { name, adminEmail, adminId, date, time, address, state, city, comments });
+    let { data } = response;
+
+    let eventObject;
+
+    if (data.statusCode === 200) {
+      eventObject =
+        {
+          selectedEvent: data.body.event
+        };
+      dispatch(addEvent(eventObject));
+
+    }
+    else {
+      userObject =
+        {
+
+          selectedEvent: null
+        }
+      dispatch(addEvent(eventObject));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
 
 /**
 * REDUCER
