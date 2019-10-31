@@ -21,6 +21,17 @@ export default class AddEvent extends React.Component {
 
   }
 
+  handleEventSubmit(evt) {
+    evt.preventDefault();
+    let name = evt.target.name.value;
+    let date = evt.target.date.value;
+    let time = evt.target.time.value;
+    let address = evt.target.address.value;
+    let city = evt.target.city.value;
+    let state = evt.target.state.value;
+    let comments = evt.target.comments.value;
+  }
+
   handleSubmit(evt) {
     evt.preventDefault();
     let searchItem = evt.target.search.value;
@@ -29,7 +40,7 @@ export default class AddEvent extends React.Component {
 
 
   render() {
-    console.log(this.state)
+
     return (
       <div>
         <h2>Add Event</h2>

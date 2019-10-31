@@ -39,7 +39,7 @@ const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
 export default function (state = eventObject, action) {
   switch (action.type) {
     case ADD_EVENT:
-      return action.user
+      return action.event
     default:
       return state
   }
