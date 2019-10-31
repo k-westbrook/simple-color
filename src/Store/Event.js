@@ -4,7 +4,7 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_ALL_EVENTS = 'GET_ALL_EVENTS';
+//const GET_ALL_EVENTS = 'GET_ALL_EVENTS';
 const ADD_EVENT = 'ADD_EVENT';
 const GET_SPECIFIC_EVENT = 'GET_SPECIFIC_EVENT';
 const REMOVE_EVENT = 'REMOVE_EVENT';
@@ -22,7 +22,7 @@ const eventObject = {
  * ACTION CREATORS
  */
 
-const getEvents = (events) => ({ type: GET_ALL_EVENTS, events })
+//const getEvents = (events) => ({ type: GET_ALL_EVENTS, events })
 const addEvent = (event) => ({ type: ADD_EVENT, event })
 const getEvent = (event) => ({ type: GET_SPECIFIC_EVENT, event })
 const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
@@ -43,7 +43,6 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
     if (data.statusCode === 200) {
 
       selectedEvent = data.body.event;
-      console.log(selectedEvent)
       dispatch(addEvent(selectedEvent));
 
     }
@@ -63,7 +62,6 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
 export default function (state = eventObject, action) {
   switch (action.type) {
     case ADD_EVENT:
-      console.log(action.event)
       return { ...state, selectedEvent: action.event }
     default:
       return state
