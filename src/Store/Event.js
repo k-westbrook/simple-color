@@ -13,7 +13,6 @@ const REMOVE_EVENT = 'REMOVE_EVENT';
  * INITIAL STATE
  */
 const eventObject = {
-  events: [],
   selectedEvent: null
 };
 
