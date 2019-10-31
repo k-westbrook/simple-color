@@ -16,7 +16,7 @@ class MainNavBar extends React.Component {
           :
           <nav>
             <Link to="/mydash">My Dashboard</Link>
-            <Link to="/myrecipebox">Event List</Link>
+            <Link to="/myrecipebox">Eats List</Link>
             <Link to="/homepage" onClick={this.props.logout}>Logout</Link>
           </nav >
         }
