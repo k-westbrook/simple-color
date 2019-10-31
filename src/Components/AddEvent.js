@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios'
 import SearchResults from './SearchResults';
 import NewEventForm from './NewEventForm';
+import { connect } from 'react-redux'
 
 
-export default class AddEvent extends React.Component {
+class AddEvent extends React.Component {
 
   constructor() {
     super();
@@ -14,6 +15,7 @@ export default class AddEvent extends React.Component {
       }
     this.getYelpSearchResults = this.getYelpSearchResults.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEventSubmit = this.handleEventSubmit.bind(this);
   }
   async getYelpSearchResults(search) {
     let results = await axios.post("https://b36yrfjg83.execute-api.us-west-1.amazonaws.com/Prod", { search: search });
@@ -30,7 +32,9 @@ export default class AddEvent extends React.Component {
     let city = evt.target.city.value;
     let state = evt.target.state.value;
     let comments = evt.target.comments.value;
-
+    let email = this.props.user.email;
+    let adminID = this.props.user_id;
+    console.log(name, date, time, address, city, state, comments, email, adminID)
   }
 
   handleSubmit(evt) {
@@ -56,8 +60,16 @@ export default class AddEvent extends React.Component {
           <h3>Results</h3>
           <SearchResults results={this.state.searchResults} />
         </div>
-        <NewEventForm />
+        <NewEventForm handleEventSubmit={this.handleEventSubmit} />
       </div>
     )
   }
 }
+
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapState)(AddEvent)

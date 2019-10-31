@@ -48,7 +48,7 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
 
     }
     else {
-      userObject =
+      eventObject =
         {
 
           selectedEvent: null
@@ -67,7 +67,7 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
 export default function (state = eventObject, action) {
   switch (action.type) {
     case ADD_EVENT:
-      return action.event
+      return { selectedEvent: action.event.selectedEvent }
     default:
       return state
   }

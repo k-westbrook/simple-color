@@ -1,13 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+
 class NewEventForm extends React.Component {
-
-  constructor() {
-    super();
-
-  }
-
 
   render() {
 
@@ -15,7 +10,7 @@ class NewEventForm extends React.Component {
       <div>
         <div>
           <h3>Create Event</h3>
-          <form>
+          <form onSubmit={this.props.handleEventSubmit}>
             <label htmlFor="name">Restaurant Name</label>
             <input type="text" name="name" />
             <label htmlFor="date">Date</label>
