@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { loginUserThunk } from '../Store/User';
 import Cookies from 'universal-cookie'
 import EventsContainer from './EventsContainer';
+import AddEvent from './AddEvent';
 
 class Routes extends React.Component {
 
@@ -32,6 +33,7 @@ class Routes extends React.Component {
             <Switch>
               <Route path="/mydash" component={MainDashboard} />
               <Route path="/myeats" component={EventsContainer} />
+              <Route path="/addeat" component={AddEvent} />
             </Switch>
             :
             <Switch>
