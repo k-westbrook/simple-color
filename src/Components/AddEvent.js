@@ -33,10 +33,9 @@ class AddEvent extends React.Component {
     let city = evt.target.city.value;
     let state = evt.target.state.value;
     let comments = evt.target.comments.value;
-    let email = this.props.user.email;
-    let adminID = this.props.user_id;
-    console.log(name, date, time, address, city, state, comments, email, adminID)
-    this.props.addEvent(name, date, time, address, city, state, comments, email, adminID)
+    let adminEmail = this.props.user.email;
+    let adminId = this.props.user.user.user_id;
+    this.props.addEvent(name, adminEmail, adminId, date, time, address, state, city, comments)
   }
 
   handleSubmit(evt) {
