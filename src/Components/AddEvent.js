@@ -33,7 +33,7 @@ class AddEvent extends React.Component {
     let city = evt.target.city.value;
     let state = evt.target.state.value;
     let comments = evt.target.comments.value;
-    let adminEmail = this.props.user.email;
+    let adminEmail = this.props.user.user.email;
     let adminId = this.props.user.user.user_id;
     this.props.addEvent(name, adminEmail, adminId, date, time, address, state, city, comments)
   }
@@ -68,7 +68,7 @@ class AddEvent extends React.Component {
 }
 const mapDispatch = dispatch => {
   return {
-    addEvent: (name, date, time, address, city, state, comments, email, adminID) => dispatch(addEventThunk(name, date, time, address, city, state, comments, email, adminID))
+    addEvent: (name, adminEmail, adminId, date, time, address, state, city, comments) => dispatch(addEventThunk(name, adminEmail, adminId, date, time, address, state, city, comments))
   }
 }
 

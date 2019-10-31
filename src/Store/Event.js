@@ -34,26 +34,22 @@ const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
 export const addEventThunk = (name, adminEmail, adminId, date, time, address, state, city, comments) => async dispatch => {
 
   try {
+
     let response = await axios.post("https://7lcnoku2w9.execute-api.us-west-1.amazonaws.com/Prod", { name, adminEmail, adminId, date, time, address, state, city, comments });
     let { data } = response;
 
-    let eventObject;
-
+    let selectedEvent;
+    console.log(data.body)
     if (data.statusCode === 200) {
-      eventObject =
-        {
-          selectedEvent: data.body.event
-        };
-      dispatch(addEvent(eventObject));
+
+      selectedEvent = data.body.event;
+      console.log(selectedEvent)
+      dispatch(addEvent(selectedEvent));
 
     }
     else {
-      eventObject =
-        {
-
-          selectedEvent: null
-        }
-      dispatch(addEvent(eventObject));
+      selectedEvent = null;
+      dispatch(addEvent(selectedEvent));
     }
   } catch (error) {
     console.log(error);
@@ -67,7 +63,8 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
 export default function (state = eventObject, action) {
   switch (action.type) {
     case ADD_EVENT:
-      return { selectedEvent: action.event.selectedEvent }
+      console.log(action.event)
+      return { ...state, selectedEvent: action.event }
     default:
       return state
   }
