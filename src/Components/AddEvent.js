@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import SearchResults from './SearchResults';
+import NewEventForm from './NewEventForm';
 
 
 export default class AddEvent extends React.Component {
@@ -43,6 +44,7 @@ export default class AddEvent extends React.Component {
           <h3>Results</h3>
           <SearchResults results={this.state.searchResults} />
         </div>
+        <NewEventForm />
       </div>
     )
   }
