@@ -18,8 +18,17 @@ class NewEventForm extends React.Component {
           <form>
             <label htmlFor="name">Restaurant Name</label>
             <input type="text" name="name" />
+            <label htmlFor="date">Date</label>
+            <input type="date" name="date" />
+            <label htmlFor="time">Time</label>
+            <input type="time" name="time" />
             <label htmlFor="address">Address</label>
             <input type="text" name="address" />
+            <label htmlFor="city">City</label>
+            <input type="text" name="city" />
+            <label htmlFor="state">State</label>
+            <input type="text" name="state" />
+
           </form>
         </div>
       </div>
