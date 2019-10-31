@@ -25,14 +25,16 @@ class Routes extends React.Component {
     return (
       <div>
         <Switch>
-          <Route path="/homepage" component={HomePage} />
+
 
           {(this.props.user.registered) ?
             <Switch>
               <Route path="/mydash" component={MainDashboard} />
+              <Route path="/mydash" component={MainDashboard} />
             </Switch>
             :
             <Switch>
+              <Route path="/homepage" component={HomePage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/register" component={RegisterPage} />
             </Switch>
