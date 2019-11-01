@@ -87,7 +87,7 @@ export const loginUserThunk = (email, password) => async dispatch => {
       cookies.set('authentication', true, { path: '/' });
       cookies.set('email', email, { path: '/' });
       cookies.set('password', password, { path: '/' });
-      history.push('/mydash')
+
     }
     else {
       userObject =

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { registerUserThunk } from '../Store/User';
 import { connect } from 'react-redux';
-
+import history from '../history'
 
 
 class RegisterPage extends React.Component {
@@ -68,7 +68,10 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
   return {
-    registerUser: (email, password) => dispatch(registerUserThunk(email, password))
+    registerUser: (email, password) => {
+      dispatch(registerUserThunk(email, password))
+      history.push('/mydash');
+    }
   }
 }
 

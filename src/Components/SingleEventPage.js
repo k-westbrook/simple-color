@@ -9,26 +9,23 @@ class SingleEventPage extends React.Component {
     this.state = {
       loaded: false
     }
-    this.handleEventInfoLoad = this.handleEventInfoLoad.bind(this);
+
   }
   componentDidMount() {
-    this.handleEventInfoLoad();
-    this.setState({ loaded: true })
+    let event_id = this.props.match.params.event_id;
+    this.props.getEvent(event_id);
+
   }
 
-  handleEventInfoLoad() {
-    let event_id = this.props.match.params.event_id;
-    console.log(event_id)
-    this.props.getEvent(event_id);
-  }
+
 
   render() {
-    console.log(this.props)
+    console.log("EVENT", this.props)
     return (
       <div>
-        {(this.state.loaded) ?
+        {(this.props.event.selectedEvent) ?
           <div>
-            <h4>Eat at</h4>
+            <h4>Eat at {this.props.event.selectedEvent.name}!</h4>
           </div>
           :
           <div>
@@ -38,6 +35,7 @@ class SingleEventPage extends React.Component {
 
         }
       </div>
+
     )
   }
 }

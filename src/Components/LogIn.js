@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { loginUserThunk } from '../Store/User';
 import { connect } from 'react-redux';
+import history from '../history';
 
 
 
@@ -91,7 +92,10 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
   return {
-    loginUser: (email, password) => dispatch(loginUserThunk(email, password))
+    loginUser: (email, password) => {
+      dispatch(loginUserThunk(email, password))
+      history.push('/mydash');
+    }
   }
 }
 

@@ -28,23 +28,23 @@ class Routes extends React.Component {
     return (
       <div>
         <Switch>
-
-
           {(this.props.user.registered) ?
             <Switch>
               <Route path="/mydash" component={MainDashboard} />
               <Route path="/myeats" component={EventsContainer} />
               <Route path="/addeat" component={AddEvent} />
               <Route path="/eat/:event_id" component={SingleEventPage} />
+              <Route component={MainDashboard} />
             </Switch>
             :
             <Switch>
               <Route path="/homepage" component={HomePage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/register" component={RegisterPage} />
+              <Route component={HomePage} />
             </Switch>
           }
-          <Route component={HomePage} />
+
         </Switch>
 
       </div>
