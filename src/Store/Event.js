@@ -38,7 +38,7 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
     let { data } = response;
 
     let selectedEvent;
-    console.log(data.body)
+
     if (data.statusCode === 200) {
 
       selectedEvent = data.body.event;
@@ -55,12 +55,40 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
 
 }
 
+
+export const getSpecificEventThunk = (event_id) => async dispatch => {
+
+  try {
+
+    let response = await axios.post("https://7lcnoku2w9.execute-api.us-west-1.amazonaws.com/Prod", { event_id });
+    let { data } = response;
+
+    let selectedEvent;
+
+    if (data.statusCode === 200) {
+
+      selectedEvent = data.body.event;
+      dispatch(getEvent(selectedEvent));
+
+    }
+    else {
+      selectedEvent = null;
+      dispatch(getEvent(selectedEvent));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
 /**
 * REDUCER
 */
 export default function (state = eventObject, action) {
   switch (action.type) {
     case ADD_EVENT:
+      return { ...state, selectedEvent: action.event }
+    case GET_SPECIFIC_EVENT:
       return { ...state, selectedEvent: action.event }
     default:
       return state
