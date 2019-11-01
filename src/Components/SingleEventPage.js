@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { getSpecificEventThunk } from '../Store/Event';
 
 class SingleEventPage extends React.Component {
 
@@ -19,7 +20,7 @@ class SingleEventPage extends React.Component {
       <div>
         {(this.state.loaded) ?
           <div>
-            <h4>Welcome to your Simply Eat Dashboard</h4>
+            <h4>Event</h4>
           </div>
           :
           <div>
@@ -33,12 +34,19 @@ class SingleEventPage extends React.Component {
   }
 }
 
+
+const mapDispatch = dispatch => {
+  return {
+    getEvent: (event_id) => dispatch(getSpecificEventThunk())
+  }
+}
 const mapState = state => {
   return {
-    user: state.user
+    user: state.user,
+    event: state.event
   }
 }
 
 
 
-export default connect(mapState)(SingleEventPage)
+export default connect(mapState, mapDispatch)(SingleEventPage)
