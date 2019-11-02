@@ -25,7 +25,10 @@ class SingleEventPage extends React.Component {
       <div>
         {(this.props.event.selectedEvent) ?
           <div>
-            <h4>Eat at {this.props.event.selectedEvent.name}!</h4>
+            <h3>Eat at {this.props.event.selectedEvent.name} with {this.props.event.selectedEvent.adminEmail}!</h3>
+            <p>
+              {this.props.event.selectedEvent.comments}
+            </p>
             <p>Location:{this.props.event.selectedEvent.address} <br />
               {this.props.event.selectedEvent.city}, {this.props.event.selectedEvent.state}
             </p>
@@ -34,6 +37,7 @@ class SingleEventPage extends React.Component {
               Time: {this.props.event.selectedEvent.time}
             </p>
             <div>
+              <h3>Who's Attending</h3>
               <ul>
                 {this.props.event.selectedEvent.attendees.map(attendee => {
                   return (
