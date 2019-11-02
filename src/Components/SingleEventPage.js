@@ -20,12 +20,33 @@ class SingleEventPage extends React.Component {
 
 
   render() {
-    console.log("EVENT", this.props)
+
     return (
       <div>
         {(this.props.event.selectedEvent) ?
           <div>
             <h4>Eat at {this.props.event.selectedEvent.name}!</h4>
+            <p>Location:{this.props.event.selectedEvent.address} <br />
+              {this.props.event.selectedEvent.city}, {this.props.event.selectedEvent.state}
+            </p>
+            <p>
+              When: {this.props.event.selectedEvent.date} <br />
+              Time: {this.props.event.selectedEvent.time}
+            </p>
+            <div>
+              <ul>
+                {this.props.event.selectedEvent.attendees.map(attendee => {
+                  return (
+                    <div>
+                      {attendee}
+                    </div>
+                  )
+                }
+                )
+
+                }
+              </ul>
+            </div>
           </div>
           :
           <div>
