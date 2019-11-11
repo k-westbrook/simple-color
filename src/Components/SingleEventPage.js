@@ -31,7 +31,7 @@ class SingleEventPage extends React.Component {
     let guestObject = { guestEmail: evt.target.guestEmail.value, state: true };
     let attendeeList = this.props.event.selectedEvent.attendees;
     let addedList = [...attendeeList, guestObject];
-    this.setState({ attendeeList: addedList });
+    //this.setState({ attendeeList: addedList });
 
     this.props.addGuest(this.props.event.selectedEvent.event_id, addedList)
   }
@@ -60,7 +60,7 @@ class SingleEventPage extends React.Component {
             <div>
               <h3>Who's Attending</h3>
               <ul>
-                {this.state.attendeeList.map(attendee => {
+                {this.props.event.selectedEvent.attendeeList.map(attendee => {
                   return (
                     <div key={attendee}>
                       {attendee}
