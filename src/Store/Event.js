@@ -8,6 +8,7 @@ import history from '../history'
 const ADD_EVENT = 'ADD_EVENT';
 const GET_SPECIFIC_EVENT = 'GET_SPECIFIC_EVENT';
 const REMOVE_EVENT = 'REMOVE_EVENT';
+const ADD_GUEST = 'ADD_GUEST';
 
 /**
  * INITIAL STATE
@@ -25,6 +26,7 @@ const eventObject = {
 const addEvent = (event) => ({ type: ADD_EVENT, event })
 const getEvent = (event) => ({ type: GET_SPECIFIC_EVENT, event })
 const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
+const addGuesttoEvent = (guest) => ({ type: ADD_GUEST, guest })
 
 
 /**
@@ -74,6 +76,31 @@ export const getSpecificEventThunk = (event_id) => async dispatch => {
     else {
       selectedEvent = null;
       dispatch(getEvent(selectedEvent));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+export const addGuestThunk = (event_id, attendees) => async dispatch => {
+
+  try {
+
+    let response = await axios.post("https://2tkucwb48h.execute-api.us-west-1.amazonaws.com/Prod", { event_id, attendees });
+    let { data } = response;
+
+    let attendees;
+
+    if (data.statusCode === 200) {
+
+      attendees = data.body.attendees;
+      dispatch(addGuestThunk(attendees));
+
+    }
+    else {
+      attendees = [];
+      dispatch(addGuestThunk(attendees));
     }
   } catch (error) {
     console.log(error);

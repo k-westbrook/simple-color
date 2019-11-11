@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { getSpecificEventThunk } from '../Store/Event';
+import AddGuest from './AddGuest';
 
 class SingleEventPage extends React.Component {
 
@@ -10,12 +11,21 @@ class SingleEventPage extends React.Component {
       loaded: false
     }
 
+    this.handleGuestAdd = this.handleGuestAdd.bind(this);
+
   }
   componentDidMount() {
     let event_id = this.props.match.params.event_id;
     this.props.getEvent(event_id);
 
   }
+
+  handleGuestAdd(evt) {
+    evt.preventDefault();
+    let guestEmail = evt.target.guestEmail.value;
+
+  }
+
 
 
 
@@ -50,6 +60,9 @@ class SingleEventPage extends React.Component {
 
                 }
               </ul>
+            </div>
+            <div>
+              <AddGuest handleGuestAdd={this.handleGuestAdd} />
             </div>
           </div>
           :

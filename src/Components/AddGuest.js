@@ -8,9 +8,12 @@ export default class AddGuest extends React.Component {
 
     return (
       <div>
-        <h4>Welcome to Simply Eat</h4>
 
-
+        <form onSubmit={this.props.handleGuestAdd}>
+          <label htmlFor='guestEmail'>Guest Email</label>
+          <input name='guestEmail' type='text' />
+          <button>Add Guest</button>
+        </form>
       </div>
     )
   }
