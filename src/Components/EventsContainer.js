@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class EventsContainer extends React.Component {
 
   render() {
-
+    console.log(this.props)
     return (
       <div>
         <h2>My eats</h2>
@@ -18,9 +18,7 @@ class EventsContainer extends React.Component {
   }
 }
 
-const mapDispatch = dispatch => {
 
-}
 const mapState = state => {
   return {
     user: state.user,
@@ -30,4 +28,4 @@ const mapState = state => {
 
 
 
-export default connect(mapState, mapDispatch)(EventsContainer)
+export default connect(mapState)(EventsContainer)
