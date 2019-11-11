@@ -8,10 +8,13 @@ class SingleEventPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      loaded: false
+      loaded: false,
+      attendeeList: []
     }
 
     this.handleGuestAdd = this.handleGuestAdd.bind(this);
+
+
 
   }
   componentDidMount() {
@@ -20,13 +23,15 @@ class SingleEventPage extends React.Component {
 
   }
 
+
+
+
   handleGuestAdd(evt) {
     evt.preventDefault();
     let guestEmail = evt.target.guestEmail.value;
     let attendeeList = this.props.event.selectedEvent.attendees;
-
     let addedList = [...attendeeList, guestEmail];
-
+    this.setState({ attendeeList: addedList });
 
     this.props.addGuest(this.props.event.selectedEvent.event_id, addedList)
   }
@@ -35,6 +40,7 @@ class SingleEventPage extends React.Component {
 
 
   render() {
+
 
     return (
       <div>
@@ -54,7 +60,7 @@ class SingleEventPage extends React.Component {
             <div>
               <h3>Who's Attending</h3>
               <ul>
-                {this.props.event.selectedEvent.attendees.map(attendee => {
+                {this.state.attendeeList.map(attendee => {
                   return (
                     <div key={attendee}>
                       {attendee}
