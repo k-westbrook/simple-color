@@ -28,6 +28,7 @@ class SingleEventPage extends React.Component {
     let addedList = [...attendeeList, guestEmail];
 
 
+    this.props.addGuest(this.props.event.selectedEvent.event_id, addedList)
   }
 
 
@@ -55,7 +56,7 @@ class SingleEventPage extends React.Component {
               <ul>
                 {this.props.event.selectedEvent.attendees.map(attendee => {
                   return (
-                    <div>
+                    <div key={attendee}>
                       {attendee}
                     </div>
                   )

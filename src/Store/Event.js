@@ -26,7 +26,7 @@ const eventObject = {
 const addEvent = (event) => ({ type: ADD_EVENT, event })
 const getEvent = (event) => ({ type: GET_SPECIFIC_EVENT, event })
 const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
-const addGuesttoEvent = (guest) => ({ type: ADD_GUEST, guest })
+const addGuestToEvent = (attendees) => ({ type: ADD_GUEST, attendees })
 
 
 /**
@@ -85,6 +85,7 @@ export const getSpecificEventThunk = (event_id) => async dispatch => {
 
 export const addGuestThunk = (event_id, attendees) => async dispatch => {
 
+  console.log(event_id, attendees)
   try {
 
     let response = await axios.post("https://2tkucwb48h.execute-api.us-west-1.amazonaws.com/Prod", { event_id, attendees });
@@ -95,12 +96,12 @@ export const addGuestThunk = (event_id, attendees) => async dispatch => {
     if (data.statusCode === 200) {
 
       attendeeList = data.body.attendees;
-      dispatch(addGuestThunk(attendees));
+      dispatch(addGuestToEvent(attendees));
 
     }
     else {
       attendeeList = [];
-      dispatch(addGuestThunk(attendees));
+      dispatch(addGuestToEvent(attendees));
     }
   } catch (error) {
     console.log(error);
@@ -119,7 +120,7 @@ export default function (state = eventObject, action) {
       return { ...state, selectedEvent: action.event }
     case ADD_GUEST:
       console.log(action.attendees)
-      break;
+      return state;
     default:
       return state
   }
