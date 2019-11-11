@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { getSpecificEventThunk } from '../Store/Event';
+import { getSpecificEventThunk, addGuestThunk } from '../Store/Event';
 import AddGuest from './AddGuest';
 
 class SingleEventPage extends React.Component {
@@ -23,6 +23,10 @@ class SingleEventPage extends React.Component {
   handleGuestAdd(evt) {
     evt.preventDefault();
     let guestEmail = evt.target.guestEmail.value;
+    let attendeeList = this.props.event.selectedEvent.attendees;
+
+    let addedList = [...attendeeList, guestEmail];
+
 
   }
 
@@ -81,7 +85,8 @@ class SingleEventPage extends React.Component {
 
 const mapDispatch = dispatch => {
   return {
-    getEvent: (event_id) => dispatch(getSpecificEventThunk(event_id))
+    getEvent: (event_id) => dispatch(getSpecificEventThunk(event_id)),
+    addGuest: (event_id, attendees) => dispatch(addGuestThunk(event_id, attendees))
   }
 }
 const mapState = state => {

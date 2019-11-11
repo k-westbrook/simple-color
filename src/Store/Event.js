@@ -90,16 +90,16 @@ export const addGuestThunk = (event_id, attendees) => async dispatch => {
     let response = await axios.post("https://2tkucwb48h.execute-api.us-west-1.amazonaws.com/Prod", { event_id, attendees });
     let { data } = response;
 
-    let attendees;
+    let attendeeList;
 
     if (data.statusCode === 200) {
 
-      attendees = data.body.attendees;
+      attendeeList = data.body.attendees;
       dispatch(addGuestThunk(attendees));
 
     }
     else {
-      attendees = [];
+      attendeeList = [];
       dispatch(addGuestThunk(attendees));
     }
   } catch (error) {
@@ -116,8 +116,10 @@ export default function (state = eventObject, action) {
     case ADD_EVENT:
       return { ...state, selectedEvent: action.event }
     case GET_SPECIFIC_EVENT:
-      console.log(action.event)
       return { ...state, selectedEvent: action.event }
+    case ADD_GUEST:
+      console.log(action.attendees)
+      break;
     default:
       return state
   }
