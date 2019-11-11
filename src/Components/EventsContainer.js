@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
-export default class EventsContainer extends React.Component {
+class EventsContainer extends React.Component {
 
   render() {
 
@@ -16,3 +17,17 @@ export default class EventsContainer extends React.Component {
     )
   }
 }
+
+const mapDispatch = dispatch => {
+
+}
+const mapState = state => {
+  return {
+    user: state.user,
+    event: state.event
+  }
+}
+
+
+
+export default connect(mapState, mapDispatch)(EventsContainer)
