@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getSpecificEventThunk, addGuestThunk } from '../Store/Event';
 import AddGuest from './AddGuest';
 import AttendingList from './AttendingList';
+import NotAttendingList from './NotAttendingList';
 
 class SingleEventPage extends React.Component {
 
@@ -53,23 +54,7 @@ class SingleEventPage extends React.Component {
               <AttendingList attendees={this.props.event.selectedEvent.attendees} />
             </div>
             <div>
-              <h3>Who Can't Make It</h3>
-              <ul>
-                {this.props.event.selectedEvent.attendees.map(attendee => {
-                  if (!attendee.status) {
-                    return (
-                      <div key={attendee.guestEmail}>
-                        {attendee.guestEmail}
-                      </div>
-                    )
-                  } else {
-                    return (<div></div>)
-                  }
-                }
-                )
-
-                }
-              </ul>
+              <NotAttendingList attendees={this.props.event.selectedEvent.attendees} />
             </div>
             <div>
               <AddGuest handleGuestAdd={this.handleGuestAdd} />
