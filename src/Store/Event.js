@@ -146,7 +146,17 @@ export default function (state = eventObject, action) {
         return { ...state, selectedEvent: copySelectedEvent };
       }
     case UPDATE_RESPONSE:
-      return state;
+      {
+        let copyArray = state.selectedEvent.attendees;
+        for (let i = 0; i < copyArray.length; i++) {
+          if (copyArray[i].guestEmail === action.guestObject.guestEmail) {
+            copyArray.splice(i, 1);
+          }
+        }
+        copyArray.push(action.guestObject);
+        let copySelectedEvent = { ...state.selectedEvent, attendees: copyArray };
+        return { ...state, selectedEvent: copySelectedEvent };
+      }
     default:
       return state
   }

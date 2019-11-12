@@ -48,7 +48,7 @@ class SingleEventPage extends React.Component {
         copyAttendees.push(changedGuest)
       }
     }
-    this.props.updateResponse(this.props.event.selectedEvent.event_id, copyAttendees, changedGuest)
+    this.props.updateGuest(this.props.event.selectedEvent.event_id, copyAttendees, changedGuest)
   }
 
   render() {
@@ -97,7 +97,7 @@ const mapDispatch = dispatch => {
   return {
     getEvent: (event_id) => dispatch(getSpecificEventThunk(event_id)),
     addGuest: (event_id, attendees, guestObject) => dispatch(addGuestThunk(event_id, attendees, guestObject)),
-    updateGuestThunk: (event_id, attendees, guestObject) => dispatch(updateGuestThunk(event_id, attendees, guestObject))
+    updateGuest: (event_id, attendees, guestObject) => dispatch(updateGuestThunk(event_id, attendees, guestObject))
   }
 }
 const mapState = state => {
