@@ -4,6 +4,7 @@ import { getSpecificEventThunk, addGuestThunk } from '../Store/Event';
 import AddGuest from './AddGuest';
 import AttendingList from './AttendingList';
 import NotAttendingList from './NotAttendingList';
+import { tsThisType } from '@babel/types';
 
 class SingleEventPage extends React.Component {
 
@@ -21,15 +22,16 @@ class SingleEventPage extends React.Component {
     let event_id = this.props.match.params.event_id;
     this.props.getEvent(event_id);
     this.setState({ loaded: true })
-
+    this.setState({ attendeeList: [] })
   }
+
 
   handleGuestAdd(evt) {
     evt.preventDefault();
     let guestObject = { guestEmail: evt.target.guestEmail.value, status: true };
     let attendeeList = this.props.event.selectedEvent.attendees;
     let addedList = [...attendeeList, guestObject];
-    this.props.addGuest(this.props.event.selectedEvent.event_id, addedList)
+    this.props.addGuest(this.props.event.selectedEvent.event_id, addedList, guestObject)
   }
 
   render() {
@@ -77,7 +79,7 @@ class SingleEventPage extends React.Component {
 const mapDispatch = dispatch => {
   return {
     getEvent: (event_id) => dispatch(getSpecificEventThunk(event_id)),
-    addGuest: (event_id, attendees) => dispatch(addGuestThunk(event_id, attendees))
+    addGuest: (event_id, attendees, guestObject) => dispatch(addGuestThunk(event_id, attendees, guestObject))
   }
 }
 const mapState = state => {

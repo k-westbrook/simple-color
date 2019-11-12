@@ -12,7 +12,6 @@ export default class NotAttendingList extends React.Component {
   }
 
   render() {
-    console.log(this.props.attendees)
     return (
       <div>
         <h3>Who Can't Make It</h3>

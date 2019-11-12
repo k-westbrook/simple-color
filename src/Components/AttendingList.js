@@ -11,7 +11,6 @@ export default class AttendingList extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         <h3>Who's Attending</h3>
