@@ -16,6 +16,7 @@ class SingleEventPage extends React.Component {
     }
 
     this.handleGuestAdd = this.handleGuestAdd.bind(this);
+    this.handleResponse = this.handleResponse.bind(this);
   }
 
   componentDidMount() {
