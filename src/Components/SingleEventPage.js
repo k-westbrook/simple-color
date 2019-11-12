@@ -38,16 +38,21 @@ class SingleEventPage extends React.Component {
   handleResponse(evt) {
 
     let guestEmail = evt.target.value;
-    let changedGuest;
+    let changedGuest, guestToChangeStatus;
     let copyAttendees = [...this.props.event.selectedEvent.attendees];
     for (let i = 0; i < copyAttendees.length; i++) {
       if (copyAttendees[i].guestEmail === guestEmail) {
         let guestToChange = copyAttendees.splice(i, 1);
-        let guestToChangeStatus = !!guestToChange.status;
+        if (guestToChange.status === true) {
+          guestToChangeStatus = false;
+        } else {
+          guestToChangeStatus = true;
+        }
         changedGuest = { guestEmail, status: guestToChangeStatus };
         copyAttendees.push(changedGuest)
       }
     }
+    console.log(changedGuest)
     this.props.updateGuest(this.props.event.selectedEvent.event_id, copyAttendees, changedGuest)
   }
 
