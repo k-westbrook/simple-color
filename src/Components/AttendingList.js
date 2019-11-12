@@ -1,4 +1,5 @@
 import React from 'react';
+import SingleGuest from './SingleGuest';
 
 
 export default class AttendingList extends React.Component {
@@ -19,7 +20,7 @@ export default class AttendingList extends React.Component {
             if (attendee.status) {
               return (
                 <div key={attendee.guestEmail}>
-                  {attendee.guestEmail}
+                  <SingleGuest attendee={attendee} />
                 </div>
               )
             } else {

@@ -32,6 +32,7 @@ class SingleEventPage extends React.Component {
     let attendeeList = this.props.event.selectedEvent.attendees;
     let addedList = [...attendeeList, guestObject];
     this.props.addGuest(this.props.event.selectedEvent.event_id, addedList, guestObject)
+    evt.target.guestEmail.value = "";
   }
 
   render() {

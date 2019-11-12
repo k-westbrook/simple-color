@@ -119,7 +119,6 @@ export default function (state = eventObject, action) {
         let copyArray = state.selectedEvent.attendees;
         copyArray.push(action.guestObject)
         let copySelectedEvent = { ...state.selectedEvent, attendees: copyArray };
-
         return { ...state, selectedEvent: copySelectedEvent };
       }
     default:
