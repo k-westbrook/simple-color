@@ -58,6 +58,8 @@ class SingleEventPage extends React.Component {
                         {attendee.guestEmail}
                       </div>
                     )
+                  } else {
+                    return (<div></div>)
                   }
                 }
                 )
@@ -75,6 +77,8 @@ class SingleEventPage extends React.Component {
                         {attendee.guestEmail}
                       </div>
                     )
+                  } else {
+                    return (<div></div>)
                   }
                 }
                 )
