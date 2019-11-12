@@ -85,7 +85,6 @@ export const getSpecificEventThunk = (event_id) => async dispatch => {
 
 export const addGuestThunk = (event_id, attendees) => async dispatch => {
 
-  console.log(event_id, attendees)
   try {
 
     let response = await axios.post("https://2tkucwb48h.execute-api.us-west-1.amazonaws.com/Prod", { event_id, attendees });
@@ -119,7 +118,6 @@ export default function (state = eventObject, action) {
     case GET_SPECIFIC_EVENT:
       return { ...state, selectedEvent: action.event }
     case ADD_GUEST:
-      console.log(action.attendees)
       return state;
     default:
       return state
