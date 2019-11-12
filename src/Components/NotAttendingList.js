@@ -5,6 +5,7 @@ export default class NotAttendingList extends React.Component {
 
 
   render() {
+    console.log(+ (Math.random().toString()))
     return (
       <div>
         <h3>Who Can't Make It</h3>
@@ -17,7 +18,7 @@ export default class NotAttendingList extends React.Component {
                 </div>
               )
             } else {
-              return (<div></div>)
+              return (<div key={Math.random().toString()}></div>)
             }
           }
           )

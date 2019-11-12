@@ -17,7 +17,7 @@ export default class AttendingList extends React.Component {
                 </div>
               )
             } else {
-              return (<div></div>)
+              return (<div key={Math.random().toString()} ></div>)
             }
           }
           )
