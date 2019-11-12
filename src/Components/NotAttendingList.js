@@ -3,14 +3,21 @@ import React from 'react';
 
 export default class NotAttendingList extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state =
+      {
+        attendees: props.attendees
+      }
+  }
 
   render() {
-    console.log(+ (Math.random().toString()))
+
     return (
       <div>
         <h3>Who Can't Make It</h3>
         <ul>
-          {this.props.attendees.map(attendee => {
+          {this.state.attendees.map(attendee => {
             if (!attendee.status) {
               return (
                 <div key={attendee.guestEmail}>
