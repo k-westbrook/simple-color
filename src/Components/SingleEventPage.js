@@ -60,12 +60,31 @@ class SingleEventPage extends React.Component {
             <div>
               <h3>Who's Attending</h3>
               <ul>
-                {this.props.event.selectedEvent.attendeeList.map(attendee => {
-                  return (
-                    <div key={attendee}>
-                      {attendee}
-                    </div>
-                  )
+                {this.props.event.selectedEvent.attendees.map(attendee => {
+                  if (attendee.status) {
+                    return (
+                      <div key={attendee.guestEmail}>
+                        {attendee.guestEmail}
+                      </div>
+                    )
+                  }
+                }
+                )
+
+                }
+              </ul>
+            </div>
+            <div>
+              <h3>Who Can't Make It</h3>
+              <ul>
+                {this.props.event.selectedEvent.attendees.map(attendee => {
+                  if (!attendee.status) {
+                    return (
+                      <div key={attendee.guestEmail}>
+                        {attendee.guestEmail}
+                      </div>
+                    )
+                  }
                 }
                 )
 
