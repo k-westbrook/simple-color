@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default class AttendingList extends React.Component {
+export default class NotAttendingList extends React.Component {
 
 
   render() {
