@@ -12,7 +12,6 @@ class SingleEventPage extends React.Component {
     super(props);
     this.state = {
       loaded: false,
-      attendeeList: []
     }
 
     this.handleGuestAdd = this.handleGuestAdd.bind(this);
@@ -23,7 +22,7 @@ class SingleEventPage extends React.Component {
     let event_id = this.props.match.params.event_id;
     this.props.getEvent(event_id);
     this.setState({ loaded: true })
-    this.setState({ attendeeList: [] })
+
   }
 
 
