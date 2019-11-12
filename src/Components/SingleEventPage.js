@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { getSpecificEventThunk, addGuestThunk } from '../Store/Event';
+import { getSpecificEventThunk, addGuestThunk, updateGuestThunk } from '../Store/Event';
 import AddGuest from './AddGuest';
 import AttendingList from './AttendingList';
 import NotAttendingList from './NotAttendingList';
-import { tsThisType } from '@babel/types';
+
 
 class SingleEventPage extends React.Component {
 
@@ -37,6 +37,17 @@ class SingleEventPage extends React.Component {
 
   handleResponse(evt) {
 
+    let guestEmail = evt.target.value;
+
+    let copyAttendees = [...this.props.event.selectedEvent.attendees];
+    for (let i = 0; i < copyAttendees.length; i++) {
+      if (copyAttendees[i].guestEmail === guestEmail) {
+        let guestToChange = copyAttendees.splice(i, 1);
+        guestToChange.status = !guestToChange.status;
+        let changedGuest = { ...guestToChange };
+        copyAttendees.push(changedGuest)
+      }
+    }
 
 
 
@@ -87,7 +98,8 @@ class SingleEventPage extends React.Component {
 const mapDispatch = dispatch => {
   return {
     getEvent: (event_id) => dispatch(getSpecificEventThunk(event_id)),
-    addGuest: (event_id, attendees, guestObject) => dispatch(addGuestThunk(event_id, attendees, guestObject))
+    addGuest: (event_id, attendees, guestObject) => dispatch(addGuestThunk(event_id, attendees, guestObject)),
+    updateGuest: (event_id, attendees, guestObject) => dispatch(updateGuestThunk(event_id, attendees, guestObject))
   }
 }
 const mapState = state => {
