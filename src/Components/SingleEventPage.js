@@ -5,46 +5,37 @@ import AddGuest from './AddGuest';
 
 class SingleEventPage extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loaded: false,
       attendeeList: []
     }
 
     this.handleGuestAdd = this.handleGuestAdd.bind(this);
-
-
-
   }
+
   componentDidMount() {
     let event_id = this.props.match.params.event_id;
     this.props.getEvent(event_id);
+    this.setState({ loaded: true })
 
   }
-
-
-
 
   handleGuestAdd(evt) {
     evt.preventDefault();
     let guestObject = { guestEmail: evt.target.guestEmail.value, state: true };
     let attendeeList = this.props.event.selectedEvent.attendees;
     let addedList = [...attendeeList, guestObject];
-    //this.setState({ attendeeList: addedList });
-
     this.props.addGuest(this.props.event.selectedEvent.event_id, addedList)
   }
-
-
-
 
   render() {
 
 
     return (
       <div>
-        {(this.props.event.selectedEvent) ?
+        {(this.props.event.selectedEvent && this.state.loaded) ?
           <div>
             <h3>Eat at {this.props.event.selectedEvent.name} with {this.props.event.selectedEvent.adminEmail}!</h3>
             <p>
