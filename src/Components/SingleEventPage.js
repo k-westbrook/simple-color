@@ -35,6 +35,10 @@ class SingleEventPage extends React.Component {
     evt.target.guestEmail.value = "";
   }
 
+  handleResponse(evt) {
+    console.log(evt.target.value)
+  }
+
   render() {
 
 
@@ -54,10 +58,10 @@ class SingleEventPage extends React.Component {
               Time: {this.props.event.selectedEvent.time}
             </p>
             <div>
-              <AttendingList attendees={this.props.event.selectedEvent.attendees} />
+              <AttendingList attendees={this.props.event.selectedEvent.attendees} handleResponse={this.handleResponse} />
             </div>
             <div>
-              <NotAttendingList attendees={this.props.event.selectedEvent.attendees} />
+              <NotAttendingList attendees={this.props.event.selectedEvent.attendees} handleResponse={this.handleResponse} />
             </div>
             <div>
               <AddGuest handleGuestAdd={this.handleGuestAdd} />

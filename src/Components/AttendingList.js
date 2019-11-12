@@ -20,7 +20,7 @@ export default class AttendingList extends React.Component {
             if (attendee.status) {
               return (
                 <div key={attendee.guestEmail}>
-                  <SingleGuest attendee={attendee} />
+                  <SingleGuest attendee={attendee} attend={true} handleResponse={this.props.handleResponse} />
                 </div>
               )
             } else {
