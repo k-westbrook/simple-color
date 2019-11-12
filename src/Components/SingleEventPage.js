@@ -26,7 +26,7 @@ class SingleEventPage extends React.Component {
 
   handleGuestAdd(evt) {
     evt.preventDefault();
-    let guestObject = { guestEmail: evt.target.guestEmail.value, state: true };
+    let guestObject = { guestEmail: evt.target.guestEmail.value, status: true };
     let attendeeList = this.props.event.selectedEvent.attendees;
     let addedList = [...attendeeList, guestObject];
     this.props.addGuest(this.props.event.selectedEvent.event_id, addedList)
