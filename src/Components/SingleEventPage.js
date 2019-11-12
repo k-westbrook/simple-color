@@ -36,7 +36,10 @@ class SingleEventPage extends React.Component {
   }
 
   handleResponse(evt) {
-    console.log(evt.target.value)
+
+
+
+
   }
 
   render() {

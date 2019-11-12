@@ -9,6 +9,7 @@ const ADD_EVENT = 'ADD_EVENT';
 const GET_SPECIFIC_EVENT = 'GET_SPECIFIC_EVENT';
 const REMOVE_EVENT = 'REMOVE_EVENT';
 const ADD_GUEST = 'ADD_GUEST';
+const UPDATE_RESPONSE = 'UPDATE_RESPONSE';
 
 /**
  * INITIAL STATE
@@ -27,6 +28,7 @@ const addEvent = (event) => ({ type: ADD_EVENT, event })
 const getEvent = (event) => ({ type: GET_SPECIFIC_EVENT, event })
 const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
 const addGuestToEvent = (guestObject) => ({ type: ADD_GUEST, guestObject })
+const updateResponse = (guestEmiail) => ({ type: UPDATE_RESPONSE, guestEmiail })
 
 
 /**
@@ -83,7 +85,29 @@ export const getSpecificEventThunk = (event_id) => async dispatch => {
 
 }
 
-export const addGuestThunk = (event_id, attendees, guestObject) => async dispatch => {
+export const addGuestThunk = (event_id, attendees, guestEmail) => async dispatch => {
+
+  try {
+
+    let response = await axios.post("https://2tkucwb48h.execute-api.us-west-1.amazonaws.com/Prod", { event_id, attendees });
+    let { data } = response;
+
+    if (data.statusCode === 200) {
+
+      dispatch(updateResponse(guestEmail));
+
+    }
+    else {
+
+      dispatch(updateResponse(guestEmail));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+export const updateGuestThunk = (event_id, attendees, guestObject) => async dispatch => {
 
   try {
 
@@ -121,6 +145,8 @@ export default function (state = eventObject, action) {
         let copySelectedEvent = { ...state.selectedEvent, attendees: copyArray };
         return { ...state, selectedEvent: copySelectedEvent };
       }
+    case UPDATE_RESPONSE:
+      return state;
     default:
       return state
   }
