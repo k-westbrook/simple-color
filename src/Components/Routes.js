@@ -54,7 +54,8 @@ class Routes extends React.Component {
 }
 const mapState = state => {
   return {
-    user: state.user
+    user: state.user,
+    event: state.event
   }
 }
 const mapDispatch = dispatch => {

@@ -141,10 +141,10 @@ export default function (state = eventObject, action) {
       return { ...state, selectedEvent: action.event }
     case ADD_GUEST:
       {
-        let copyArray = state.selectedEvent.attendees;
-        copyArray.push(action.guestObject)
-        let copySelectedEvent = { ...state.selectedEvent, attendees: copyArray };
-        return { ...state, selectedEvent: copySelectedEvent };
+        let prev = state.selectedEvent.attendees;
+        prev.push(action.guestObject)
+        let newSelectedEvent = { ...state.selectedEvent, attendees: prev }
+        return { ...state, selectedEvent: newSelectedEvent };
       }
     case UPDATE_RESPONSE:
       {
