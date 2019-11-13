@@ -94,12 +94,12 @@ export const addGuestThunk = (event_id, attendees, guestEmail) => async dispatch
 
     if (data.statusCode === 200) {
 
-      dispatch(updateResponse(guestEmail));
+      dispatch(addGuestToEvent(guestEmail));
 
     }
     else {
 
-      dispatch(updateResponse(guestEmail));
+      dispatch(addGuestToEvent(guestEmail));
     }
   } catch (error) {
     console.log(error);
@@ -149,13 +149,17 @@ export default function (state = eventObject, action) {
     case UPDATE_RESPONSE:
       {
         let copyArray = state.selectedEvent.attendees;
+        let index;
         for (let i = 0; i < copyArray.length; i++) {
           if (copyArray[i].guestEmail === action.guestEmail.guestEmail) {
-            copyArray.splice(i, 1);
+            index = i;
           }
         }
-        copyArray.push(action.guestEmail);
-        let copySelectedEvent = { ...state.selectedEvent, attendees: [...copyArray] };
+        copyArray.splice(index, 1)
+        let newGuestObject = { guestEmail: action.guestEmail.guestEmail, status: action.guestEmail.status }
+        copyArray.push(newGuestObject);
+        let copySelectedEvent = { ...state.selectedEvent, attendees: copyArray };
+
         return { ...state, selectedEvent: copySelectedEvent };
       }
     default:

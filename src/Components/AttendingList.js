@@ -12,7 +12,6 @@ export default class AttendingList extends React.Component {
   }
 
   render() {
-    console.log(this.props.attendees)
     return (
       <div>
         <h3>Who's Attending</h3>
