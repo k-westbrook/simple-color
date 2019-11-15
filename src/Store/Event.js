@@ -150,7 +150,7 @@ export default function (state = eventObject, action) {
       }
     case UPDATE_RESPONSE:
       {
-        let copyArray = state.selectedEvent.attendees;
+        let copyArray = [...state.selectedEvent.attendees];
         let index;
         for (let i = 0; i < copyArray.length; i++) {
           if (copyArray[i].guestEmail === action.guestEmail.guestEmail) {
