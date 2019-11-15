@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import history from '../history';
 
 /**
  * ACTION TYPES
@@ -27,7 +27,7 @@ const eventObject = {
 const addEvent = (event) => ({ type: ADD_EVENT, event })
 const getEvent = (event) => ({ type: GET_SPECIFIC_EVENT, event })
 const removeEvent = (event) => ({ type: REMOVE_EVENT, event })
-const addGuestToEvent = (guestObject) => ({ type: ADD_GUEST, guestObject })
+const addGuestToEvent = (guestEmail) => ({ type: ADD_GUEST, guestEmail })
 const updateResponse = (guestEmail) => ({ type: UPDATE_RESPONSE, guestEmail })
 
 
@@ -47,11 +47,13 @@ export const addEventThunk = (name, adminEmail, adminId, date, time, address, st
 
       selectedEvent = data.body.event;
       dispatch(addEvent(selectedEvent));
+      history.push(`/eat/${selectedEvent.event_id}`);
 
     }
     else {
       selectedEvent = null;
       dispatch(addEvent(selectedEvent));
+      history.push(`/eat/${selectedEvent.event_id}`);
     }
   } catch (error) {
     console.log(error);
@@ -73,7 +75,6 @@ export const getSpecificEventThunk = (event_id) => async dispatch => {
 
       selectedEvent = data.body.event;
       dispatch(getEvent(selectedEvent));
-
     }
     else {
       selectedEvent = null;
@@ -86,6 +87,7 @@ export const getSpecificEventThunk = (event_id) => async dispatch => {
 }
 
 export const addGuestThunk = (event_id, attendees, guestEmail) => async dispatch => {
+
 
   try {
 
@@ -141,10 +143,10 @@ export default function (state = eventObject, action) {
       return { ...state, selectedEvent: action.event }
     case ADD_GUEST:
       {
-        let prev = state.selectedEvent.attendees;
-        prev.push(action.guestObject)
-        let newSelectedEvent = { ...state.selectedEvent, attendees: prev }
-        return { ...state, selectedEvent: newSelectedEvent };
+
+        let newArray = [...state.selectedEvent.attendees, action.guestEmail];
+        let copySelectedEvent = { ...state.selectedEvent, attendees: newArray }
+        return { ...state, selectedEvent: copySelectedEvent };
       }
     case UPDATE_RESPONSE:
       {

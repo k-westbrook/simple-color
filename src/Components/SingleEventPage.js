@@ -26,6 +26,7 @@ class SingleEventPage extends React.Component {
   }
 
 
+
   handleGuestAdd(evt) {
     evt.preventDefault();
     let guestObject = { guestEmail: evt.target.guestEmail.value, status: true };
@@ -58,7 +59,6 @@ class SingleEventPage extends React.Component {
   }
 
   render() {
-
 
     return (
       <div>
